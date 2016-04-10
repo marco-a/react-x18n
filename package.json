@@ -1,0 +1,41 @@
+{
+  "name": "react-x18n",
+  "version": "1.0.0",
+  "description": "Internationalisation for react.js.",
+  "main": "index.js",
+  "scripts": {
+    "test-code": "./node_modules/.bin/standard ./index.js | ./node_modules/.bin/snazzy && ./node_modules/.bin/standard ./__tests__/index.js | ./node_modules/.bin/snazzy && ./node_modules/.bin/standard ./example.jsx | ./node_modules/.bin/snazzy",
+    "unit-test": "./node_modules/.bin/jest --verbose",
+    "test": "npm run test-code && npm run unit-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marco-a/react-x18n.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marco-a/react-x18n/issues"
+  },
+  "keywords": [
+    "x18n",
+    "react",
+    "internationalisation",
+    "i18n"
+  ],
+  "author": "marco-a",
+  "license": "MIT",
+  "dependencies": {
+    "x18n": "^1.0.7"
+  },
+  "peerDependencies": {
+    "react": "^15.0.1"
+  },
+  "devDependencies": {
+    "jest": "^0.1.40",
+    "jest-cli": "^0.10.0",
+    "react": "^15.0.1",
+    "react-addons-test-utils": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "snazzy": "^3.0.0",
+    "standard": "^6.0.8"
+  }
+}
