@@ -29,6 +29,8 @@ describe('react_x18n', function () {
     expect(ReactDOM).toBeDefined()
     expect(ReactTU).toBeDefined()
     expect(X18NReactModule).toBeDefined()
+    expect(X18NReactModule.t).toBeDefined()
+    expect(X18NReactModule.t.plural).toBeDefined()
 
     expect(function () {
       X18NReactModule.x18n.register('l1', {
@@ -160,6 +162,81 @@ describe('react_x18n', function () {
         // Restore language
         X18NReactModule.x18n.set('l2')
         expect(X18NElement2.textContent).toEqual('l1-translated-key3-1-3-2')
+      })
+    })
+  })
+
+  describe('t.plural(\'key\')', function () {
+    it('should return a SPAN react element', function () {
+      expect(function () {
+        let X18NElement = ReactDOM.findDOMNode(ReactTU.renderIntoDocument(X18NReactModule.t.plural('plural', 1)))
+
+        expect(X18NElement.tagName).toEqual('SPAN')
+        ReactDOM.unmountComponentAtNode(X18NElement.parentNode)
+      }).not.toThrow()
+    })
+
+    describe('api passthrough', function () {
+      it('should return the correct value for n=1', function () {
+        let X18NElement = ReactDOM.findDOMNode(ReactTU.renderIntoDocument(X18NReactModule.t.plural('plural', 1)))
+        expect(X18NElement.textContent).toEqual('l2-plural')
+        ReactDOM.unmountComponentAtNode(X18NElement.parentNode)
+      })
+
+      it('should return the correct value for n=2', function () {
+        let X18NElement = ReactDOM.findDOMNode(ReactTU.renderIntoDocument(X18NReactModule.t.plural('plural', 2)))
+        expect(X18NElement.textContent).toEqual('l2-plural-2')
+        ReactDOM.unmountComponentAtNode(X18NElement.parentNode)
+      })
+
+      it('should return the correct value for n=10', function () {
+        let X18NElement = ReactDOM.findDOMNode(ReactTU.renderIntoDocument(X18NReactModule.t.plural('plural', 10)))
+        expect(X18NElement.textContent).toEqual('l2-plural-n-10')
+        ReactDOM.unmountComponentAtNode(X18NElement.parentNode)
+      })
+    })
+
+    describe('auto update functionality', function () {
+      it('should update for the correct value (n=1)', function () {
+        let X18NElement = ReactDOM.findDOMNode(ReactTU.renderIntoDocument(X18NReactModule.t.plural('plural', 1)))
+        expect(X18NElement.textContent).toEqual('l2-plural')
+
+        // Change language
+        X18NReactModule.x18n.set('l1')
+        expect(X18NElement.textContent).toEqual('l1-plural')
+        ReactDOM.unmountComponentAtNode(X18NElement.parentNode)
+
+        // Restore language
+        X18NReactModule.x18n.set('l2')
+        expect(X18NElement.textContent).toEqual('l1-plural')
+      })
+
+      it('should update for the correct value (n=2)', function () {
+        let X18NElement = ReactDOM.findDOMNode(ReactTU.renderIntoDocument(X18NReactModule.t.plural('plural', 2)))
+        expect(X18NElement.textContent).toEqual('l2-plural-2')
+
+        // Change language
+        X18NReactModule.x18n.set('l1')
+        expect(X18NElement.textContent).toEqual('l1-plural-2')
+        ReactDOM.unmountComponentAtNode(X18NElement.parentNode)
+
+        // Restore language
+        X18NReactModule.x18n.set('l2')
+        expect(X18NElement.textContent).toEqual('l1-plural-2')
+      })
+
+      it('should update for the correct value (n=10)', function () {
+        let X18NElement = ReactDOM.findDOMNode(ReactTU.renderIntoDocument(X18NReactModule.t.plural('plural', 10)))
+        expect(X18NElement.textContent).toEqual('l2-plural-n-10')
+
+        // Change language
+        X18NReactModule.x18n.set('l1')
+        expect(X18NElement.textContent).toEqual('l1-plural-n-10')
+        ReactDOM.unmountComponentAtNode(X18NElement.parentNode)
+
+        // Restore language
+        X18NReactModule.x18n.set('l2')
+        expect(X18NElement.textContent).toEqual('l1-plural-n-10')
       })
     })
   })
