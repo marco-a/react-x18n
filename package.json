@@ -1,6 +1,6 @@
 {
   "name": "react-x18n",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Internationalisation for react.js.",
   "main": "index.js",
   "scripts": {
