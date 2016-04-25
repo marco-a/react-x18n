@@ -4,11 +4,7 @@ let React = require('react')
 let X18N = require('x18n')
 
 let X18NSpanElement = React.createClass({
-  getInitialState: function () {
-    return {}
-  },
-
-  getInitialProps: function () {
+  getDefaultProps: function () {
     return {isPlural: false, _args: []}
   },
 
