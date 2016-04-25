@@ -91,9 +91,5 @@ npm test
 
 ## Roadmap
 
-**- Enhance API:**
-- Add local language file support.
-- Make more information available through the API (currentLanguage, etc.) (maybe needs push request for x18n.js)
-
 **- Misc:**
 - Better unit-tests.

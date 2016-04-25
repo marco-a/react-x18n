@@ -32,6 +32,9 @@ describe('react_x18n', function () {
     expect(X18NReactModule.t).toBeDefined()
     expect(X18NReactModule.t.plural).toBeDefined()
 
+    // Disable asynchronous events
+    X18NReactModule.x18n.__asyncEvents = false
+
     expect(function () {
       X18NReactModule.x18n.register('l1', {
         key1: 'l1-translated-key1-%{value}',

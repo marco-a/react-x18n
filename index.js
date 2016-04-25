@@ -2,15 +2,6 @@
 
 let React = require('react')
 let X18N = require('x18n')
-let EventEmitter = require('events')
-
-let LanguageEventEmitter = new EventEmitter()
-
-LanguageEventEmitter.setMaxListeners(0)
-
-X18N.on(['lang:change', 'dict:change'], function () {
-  LanguageEventEmitter.emit('updateComponents')
-})
 
 let X18NSpanElement = React.createClass({
   getInitialState: function () {
@@ -26,11 +17,11 @@ let X18NSpanElement = React.createClass({
   },
 
   componentWillMount: function () {
-    LanguageEventEmitter.on('updateComponents', this._update)
+    X18N.on(['lang:change', 'dict:change'], this._update)
   },
 
   componentWillUnmount: function () {
-    LanguageEventEmitter.removeListener('updateComponents', this._update)
+    X18N.off(['lang:change', 'dict:change'], this._update)
   },
 
   render: function () {
