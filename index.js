@@ -32,7 +32,7 @@ let X18NSpanElement = React.createClass({
       result = X18N.t.apply(null, this.props._args)
     }
 
-    return React.createElement('span', '', result)
+    return React.createElement('span', {}, result)
   }
 })
 
